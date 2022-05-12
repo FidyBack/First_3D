@@ -1918,6 +1918,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6100101461742364440, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100101461742364440, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100101461742364440, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 030cf5d51071c5445b92c82e00c7ac4f, type: 3}
+    - target: {fileID: 6100101461742364440, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100101461742364440, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: Test1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100101461742364440, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6100101461742364441, guid: 1ba45900efa54a648b2ccd63c208e931, type: 3}
       propertyPath: m_Name
       value: AudioManager
