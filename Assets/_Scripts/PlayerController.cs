@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour {
 	float _mouseSensitivity = 125.0f;
 	float cameraRotation = 0.0f;
 
-	float _baseSpeed = 12.0f;
-	float _baseJumpHeight = 103.0f;
+	float _baseSpeed = 15.0f;
+	float _baseJumpHeight = 3.0f;
 	float _gravity = 9.8f;
 
+	Vector3 _moveDirection = Vector3.zero;
 
 	void Start() {
 		characterController = GetComponent<CharacterController>();
@@ -38,26 +39,20 @@ public class PlayerController : MonoBehaviour {
 			float x = Input.GetAxis("Horizontal");
 			float z = Input.GetAxis("Vertical");
 
-			float y = 0;
-			if(!characterController.isGrounded){
-				y -= _gravity;
-			}
-
-			Vector3 direction = transform.right * x + transform.up * y + transform.forward * z;
-			characterController.Move(direction * _baseSpeed * Time.deltaTime);
-
-			// Jump
 			if (Input.GetButtonDown("Jump") && characterController.isGrounded) {
-				y = _baseJumpHeight;
+				_moveDirection.y = _baseJumpHeight;
 			}
+
+			if(!characterController.isGrounded){
+				_moveDirection.y -= _gravity * Time.deltaTime;
+			}
+			
+			Vector3 direction = transform.right * x + transform.up * _moveDirection.y + transform.forward * z;
+			characterController.Move(direction * _baseSpeed * Time.deltaTime);
 		} 
 		else {
 			Cursor.lockState = CursorLockMode.None;
 		}
-	
-
-
-
    }
 
 
