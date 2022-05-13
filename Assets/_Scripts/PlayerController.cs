@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	void Update() {
 		if (gm._runningTime == 0) {
 			lose.SetActive(true);
-			StartCoroutine(WaitLose());
+			StartCoroutine(WaitEnd());
 		}
 		
 		if (!PauseMenu.GameIsPaused) {
@@ -70,26 +70,26 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag("estrela")) {
 			Destroy(other.gameObject);
-			gm.Objectives += 1;
+			gm._objective += 1;
 		}
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
-		Debug.Log(hit.gameObject.name);
-		if (hit.gameObject.name == "Barrier" && gm.Objectives != 4) {
+		if (hit.gameObject.name == "Barrier" && gm._objective != 4) {
 			notEnough.gameObject.SetActive(true);
 			StartCoroutine(Wait());
-		} else if (hit.gameObject.CompareTag("Barrier") && gm.Objectives == 4) {
-			win.gameObject.SetActive(true);
-			StartCoroutine(WaitWin());
+		} else if (hit.gameObject.name == "Barrier" && gm._objective == 4) {
+			win.SetActive(true);
+			StartCoroutine(WaitEnd());
 		}
 	}
 
-	IEnumerator WaitWin() {
+	IEnumerator WaitEnd() {
 		yield return new WaitForSeconds(5);
-		win.gameObject.SetActive(false);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+		win.SetActive(false);
+		lose.SetActive(false);
+		gm.Reset();
+		SceneManager.LoadScene(0);
 	}
 
 	IEnumerator WaitLose() {

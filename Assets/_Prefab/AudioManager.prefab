@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6100101461742364440}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Test1
-    clip: {fileID: 8300000, guid: 030cf5d51071c5445b92c82e00c7ac4f, type: 3}
-    mixerGroup: {fileID: 0}
+  - name: BackgroundMusic
+    clip: {fileID: 8300000, guid: f1bd983f830f5d945bd613d6029934bc, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 1
     source: {fileID: 0}
+  slider:
+  - {fileID: 0}
+  - {fileID: 0}

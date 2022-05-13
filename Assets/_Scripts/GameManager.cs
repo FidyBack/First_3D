@@ -5,21 +5,21 @@ using UnityEngine;
 public class GameManager {
 
     private static GameManager _instance;
-    public int _startTime = 120;
-    public int _runningTime = 0;
-    private int _objective = 0;
     
-    public int StartTime {
-        get => _startTime;
-        set => _startTime = value;
-    }
-    public int Objectives {
-        get => _objective;
-        set => _objective = value;
-    }
+    public enum GameState {MENU, PLAY, ENDGAME};
+    public GameState _gameState;
 
+    public int _startTime { get; private set; }
+    public int _objective;
+    public int _runningTime;
+
+    public delegate void ChangeStateDelegate();
+    public static ChangeStateDelegate changeStateDelegate;
+    
 
     private GameManager() {
+        _gameState = GameState.MENU;
+        _startTime = 120;
         _objective = 0;
     }
 
@@ -28,5 +28,10 @@ public class GameManager {
             _instance = new GameManager();
         }
         return _instance;
+    }
+
+    public void Reset() {
+        _objective = 0;
+        _runningTime = 0;
     }
 }

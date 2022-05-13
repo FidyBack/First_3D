@@ -6,7 +6,6 @@ using System;
 public class AudioManager : MonoBehaviour {
     
     public Sound[] sounds;
-
     public static AudioManager instance;
 
     void Start() {
@@ -53,8 +52,10 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void SetVolume(float volume) {
-        foreach (Sound s in sounds) {
-            s.source.volume = s.volume * volume;   
+        GameObject audioManager = GameObject.FindWithTag("AudioManager");
+        AudioSource[] audioSources = audioManager.GetComponents<AudioSource>();
+        foreach (AudioSource audioSource in audioSources) {
+            audioSource.volume = volume;
         }
     }
 }

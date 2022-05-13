@@ -13,9 +13,9 @@ public class UIComponents : MonoBehaviour {
     }
 
     void Update() {
-        gm._runningTime = (int) (gm._startTime - Time.time);
+        gm._runningTime = (int) (gm._startTime - Time.timeSinceLevelLoad);
 
-        objText.text = "Objectives: " + gm.Objectives.ToString() + "/4";
+        objText.text = "Objectives: " + gm._objective.ToString() + "/4";
         timeText.text = "Time: " + gm._runningTime.ToString();
     }
 }

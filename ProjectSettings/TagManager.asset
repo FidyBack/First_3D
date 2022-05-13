@@ -6,6 +6,7 @@ TagManager:
   tags:
   - estrela
   - Barrier
+  - AudioManager
   layers:
   - Default
   - TransparentFX
