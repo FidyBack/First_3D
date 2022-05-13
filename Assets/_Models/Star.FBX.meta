@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a41a16ea641c0c41a1c1d4791cf4438
+guid: 5804b6540f3fa3d4aabe758076eaefcc
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: GRID
-    second: {fileID: 2100000, guid: 6445b8e43656bf548839f0459e94e377, type: 2}
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 0633a22733ea4ca46b3c5b1d54377041, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: bb1dba18443623f428984ad74d84d337, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

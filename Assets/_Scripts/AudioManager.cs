@@ -7,8 +7,6 @@ public class AudioManager : MonoBehaviour {
     
     public Sound[] sounds;
 
-    [SerializeField] Slider volumeSlider;
-
     public static AudioManager instance;
 
     void Start() {
@@ -32,7 +30,6 @@ public class AudioManager : MonoBehaviour {
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
-            s.source.outputAudioMixerGroup = s.mixerGroup;
         }
     }
 
@@ -55,9 +52,9 @@ public class AudioManager : MonoBehaviour {
         s.source.Stop();
     }
 
-    public void SetVolume() {
+    public void SetVolume(float volume) {
         foreach (Sound s in sounds) {
-            s.source.volume = s.volume * volumeSlider.value;   
+            s.source.volume = s.volume * volume;   
         }
     }
 }

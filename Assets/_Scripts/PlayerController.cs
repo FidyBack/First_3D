@@ -1,28 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
 	CharacterController characterController;
+	GameManager gm;
 	GameObject playerCamera;
+	public TextMeshProUGUI notEnough;
+	// get panel from UI
+	public GameObject win, lose;
 
-	float _mouseSensitivity = 125.0f;
+
+	float _mouseSensitivity = 100.0f;
 	float cameraRotation = 0.0f;
 
-	float _baseSpeed = 15.0f;
+	float _baseSpeed = 13.0f;
 	float _baseJumpHeight = 3.0f;
 	float _gravity = 9.8f;
 
 	Vector3 _moveDirection = Vector3.zero;
 
 	void Start() {
+		gm = GameManager.GetInstance();
 		characterController = GetComponent<CharacterController>();
 		playerCamera = GameObject.Find("Main Camera");
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void Update() {
+		if (gm._runningTime == 0) {
+			lose.SetActive(true);
+			StartCoroutine(WaitLose());
+		}
 		
 		if (!PauseMenu.GameIsPaused) {
 			Cursor.lockState = CursorLockMode.Locked;
@@ -54,6 +66,42 @@ public class PlayerController : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 		}
    }
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.CompareTag("estrela")) {
+			Destroy(other.gameObject);
+			gm.Objectives += 1;
+		}
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		Debug.Log(hit.gameObject.name);
+		if (hit.gameObject.name == "Barrier" && gm.Objectives != 4) {
+			notEnough.gameObject.SetActive(true);
+			StartCoroutine(Wait());
+		} else if (hit.gameObject.CompareTag("Barrier") && gm.Objectives == 4) {
+			win.gameObject.SetActive(true);
+			StartCoroutine(WaitWin());
+		}
+	}
+
+	IEnumerator WaitWin() {
+		yield return new WaitForSeconds(5);
+		win.gameObject.SetActive(false);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+	}
+
+	IEnumerator WaitLose() {
+		yield return new WaitForSeconds(5);
+		lose.gameObject.SetActive(false);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	IEnumerator Wait() {
+		yield return new WaitForSeconds(2);
+		notEnough.gameObject.SetActive(false);
+	}
 
 
 	void LateUpdate() {

@@ -5,7 +5,7 @@ using TMPro;
 
 public class UIComponents : MonoBehaviour {
 
-    public TextMeshProUGUI moneyText, timeText;
+    public TextMeshProUGUI objText, timeText;
     private GameManager gm;
 
     void Start() {
@@ -15,7 +15,7 @@ public class UIComponents : MonoBehaviour {
     void Update() {
         gm._runningTime = (int) (gm._startTime - Time.time);
 
-        moneyText.text = "Money: " + gm.Money.ToString();
-        timeText.text = "Time: " + gm._runningTime.ToString();    
+        objText.text = "Objectives: " + gm.Objectives.ToString() + "/4";
+        timeText.text = "Time: " + gm._runningTime.ToString();
     }
 }
